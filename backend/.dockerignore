@@ -1,0 +1,23 @@
+# Python junk
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual envs
+venv/
+ENV/
+
+# Local data dir (if want to mount it as a volume instead)
+uploads/
+*.sqlite
+*.db
+
+# Git stuff
+.git
+.gitignore
+
+# IDEs & OS files
+.DS_Store
+.idea/
+.vscode/
