@@ -2,8 +2,8 @@ from datetime import datetime, timezone
 import googlemaps
 from googlemaps import geocoding
 import os
-from dotenv import load_dotenv
 import math
+from dotenv import load_dotenv
 
 
 DEFAULT_LOCATION = "Planet Earth"
@@ -12,11 +12,10 @@ PRIORITY_POI_TYPES = [
     "cafe", "restaurant", "transit_station", "airport", "food", "park"
 ]
 
-
-
-load_dotenv()
-GOOGLE_API_KEY = os.getenv("GOOGLE_API")
-gmaps_client = googlemaps.Client(key=GOOGLE_API_KEY)
+# Initialize Google Maps client
+if not os.getenv("GOOGLE_API"):
+    load_dotenv()
+gmaps_client = googlemaps.Client(key=os.getenv("GOOGLE_API"))
 
 
 

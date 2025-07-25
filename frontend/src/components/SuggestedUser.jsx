@@ -1,21 +1,31 @@
 import { Avatar, Flex, Button, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { BeautifyNumber } from "../utils/BeautifyNumber";
-
+import { useFollowUserAPI, useUnfollowUserAPI } from "../utils/api_methods";
 
 const SuggestedUser = ({ user }) => {
     const [followed, setFollowed] = useState(user?.is_following || false);
     const [followersCount, setFollowersCount] = useState(user?.followers_count || 0);
 
+    useEffect(() => {
+        setFollowed(user?.is_following || false);
+        setFollowersCount(user?.followers_count || 0);
+    }, [user]);
+
+    const { mutate: followUser } = useFollowUserAPI();
+    const { mutate: unfollowUser } = useUnfollowUserAPI();
+    
     const navigate = useNavigate();
 
     const handleFollow = () => {
         if (followed) {
             setFollowersCount(followersCount - 1);
+            unfollowUser({ userId: user?.id });
         } else {
             setFollowersCount(followersCount + 1);
+            followUser({ userId: user?.id });
         }
         setFollowed(!followed);
     };

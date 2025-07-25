@@ -1,14 +1,31 @@
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime, Float, text
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime, Float, inspect
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.sql import func
+import os
 
 
-DATABASE_URL = "sqlite:///./test.db"  # swap for Postgres later
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./test.db")
 
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+if DATABASE_URL.startswith("sqlite"):
+    engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+else:
+    engine = create_engine(DATABASE_URL)
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
+
+
+# Ensures tables are created if they do not exist (called on app startup)
+def create_tables_if_not_exist():
+    inspector = inspect(engine)
+    tables = inspector.get_table_names()
+    if not tables:
+        print("No tables found — creating them.")
+        Base.metadata.create_all(bind=engine)
+    else:
+        print("Tables already exist — skipping create_all().")
+
 
 # ======================
 # AuthUser

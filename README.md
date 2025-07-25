@@ -35,14 +35,25 @@ Explore new places, uncover local gems, and see what’s trending near you, all 
    git clone https://github.com/your-username/Pintrigue.git
    cd Pintrigue
    ```
-
-2. **Start with Docker Compose:**  
-   Make sure Docker and Docker Compose are installed. Then run:
-   ```bash
-   docker-compose up --build
+2. **Create a `.env` file in the project root:**  
+   Add your Google Maps API key (used for geolocation & place services):
+   ```env
+   GOOGLE_API=your_google_maps_api_key
    ```
+3. **Start with Docker Compose:**  
+   Make sure Docker and Docker Compose are installed.
 
-3. **Visit the app:**  
+   - **For development:**
+     ```bash
+     docker-compose up -d --build
+     ```
+
+   - **For production:**
+     ```bash
+     docker-compose -f docker-compose.yaml up -d --build
+     ```
+
+4. **Visit the app:**  
    Once running, open your browser and head to:  
    [http://localhost:5173/](http://localhost:5173/) 📸🗺️
 

@@ -1,5 +1,5 @@
 import { Avatar, Box, Image, Flex, Button, Text, HStack, Skeleton, SkeletonCircle, SkeletonText, useDialog } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
 import { FaRegComment } from "react-icons/fa";
 
@@ -13,6 +13,13 @@ const FeedPost = ({ post }) => {
     const [liked, setLiked] = useState(post?.is_liked || false);
     const [likesCount, setLikesCount] = useState(post?.likes_count || 0);
     const [followed, setFollowed] = useState(post?.user?.is_following || false);
+
+    useEffect(() => {
+        setLiked(post?.is_liked || false);
+        setLikesCount(post?.likes_count || 0);
+        setFollowed(post?.user?.is_following || false);
+    }, [post]);
+
 
     const { mutate: likePost } = useLikePostAPI();
     const { mutate: unlikePost } = useUnlikePostAPI();

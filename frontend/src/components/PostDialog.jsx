@@ -18,6 +18,12 @@ const PostDialog = ({ dialog, post }) => {
     const [likesCount, setLikesCount] = useState(post?.likes_count || 0);
     const [commentText, setCommentText] = useState("");
 
+    useEffect(() => {
+        setLiked(post?.is_liked || false);
+        setLikesCount(post?.likes_count || 0);
+    }, [post]);
+
+
     const { mutate: addComment } = useAddCommentAPI();
     const { mutate: likePost } = useLikePostAPI();
     const { mutate: unlikePost } = useUnlikePostAPI();

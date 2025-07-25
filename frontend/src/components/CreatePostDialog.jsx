@@ -126,7 +126,7 @@ const CreatePostDialog = ({ dialog }) => {
                                     <Checkbox.Label>Use Location</Checkbox.Label>
                                 </Checkbox.Root>
 
-                                <Flex direction="column" w="100%" mb="4">
+                                {/* <Flex direction="column" w="100%" mb="4">
                                     <Input
                                         placeholder="Latitude (optional)"
                                         value={manualLatitude}
@@ -138,7 +138,7 @@ const CreatePostDialog = ({ dialog }) => {
                                         value={manualLongitude}
                                         onChange={(e) => setManualLongitude(e.target.value)}
                                     />
-                                </Flex>
+                                </Flex> */}
 
                                 {(!isGeolocationAvailable || !isGeolocationEnabled || !!positionError) && (
                                     <Flex direction="column" align="start" mb="2">
