@@ -397,6 +397,29 @@ export const useCreatePostAPI = () => {
 };
 
 /**
+ * Deletes a post.
+ * @returns {object} React Query useMutation result for deleting a post.
+ */
+export const useDeletePostAPI = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ postId }) => {
+      await apiFetch("/posts/delete", {
+        method: "POST",
+        body: {
+          post_id: postId,
+        },
+      });
+    },
+    onSuccess: () => {
+      // Invalidate the post feed to refresh likes count
+      queryClient.invalidateQueries(["post-feed"]);
+      queryClient.invalidateQueries(["liked-posts"]);
+    }
+  });
+};
+
+/**
  * Fetches nearby posts.
  * @returns {object} React Query useQuery result containing array of Post instances.
  */

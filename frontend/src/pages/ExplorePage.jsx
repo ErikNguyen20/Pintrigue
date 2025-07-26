@@ -72,7 +72,7 @@ const ExplorePage = () => {
   const mapUrl = "https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png";
   const attribution = '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
-  const { data: posts = [], isLoading } = useNearbyPostsAPI(mapState);
+  const { data: posts = [] } = useNearbyPostsAPI(mapState);
 
   const uniquePosts = useMemo(() => {
     const seen = new Set();

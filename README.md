@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/2a5ae426-55c4-4ec9-8fe8-2deacf911707" alt="Pintrigue Banner" width="100%" />
+</p>
+
 # 📌 **Pintrigue** 📌
 _A Web-Based Social Media Application_
 
@@ -24,7 +28,7 @@ Explore new places, uncover local gems, and see what’s trending near you, all 
 
 > **Watch it in action:**
 
-🚧 _Demo video coming soon!_
+[![Watch the video](https://github.com/user-attachments/assets/d0fcf715-255b-421c-bf2e-e3ebff718ff1)](https://www.youtube.com/watch?v=VFOOqVVH_2s&ab_channel=eriknguyen)
 
 ---
 

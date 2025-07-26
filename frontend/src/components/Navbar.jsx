@@ -1,4 +1,4 @@
-import { Box, Flex, Link, useBreakpointValue, useDialog } from "@chakra-ui/react";
+import { Box, Flex, Link, useBreakpointValue, useDialog, Image } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -59,6 +59,25 @@ const Navbar = () => {
         height="full"
       >
         <Flex direction={{ base: "row", md: "column" }} gap={{ base: 0, md: 5 }} justify={{ base: "flex-start", md: "space-between" }} w="full" cursor="pointer">
+            {/* Logo */}
+            {showLogout && (
+                <Link
+                    to="/"
+                    as={RouterLink}
+                    display="flex"
+                    flex={{ base: 1, md: "none" }}
+                    gap="4"
+                    alignItems="center"
+                    justifyContent={{ base: "center", md: "flex-start" }}
+                    w={{ base: "auto", md: "full" }}
+                    borderRadius="6"
+                    p={{ base: 2, md: 0 }}
+                    _hover={{ bg: "whiteAlpha.400" }}
+                >
+                    <Image rounded="2xs" src="/pintrigue_full.svg" alt="Logo" />
+                </Link>
+            )}
+
             {/* Home */}
             <Tooltip hasArrow content="Home" positioning={{placement}} openDelay={500}>
                 <Link

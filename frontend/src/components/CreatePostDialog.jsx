@@ -85,6 +85,18 @@ const CreatePostDialog = ({ dialog }) => {
         });
     };
 
+    useEffect(() => {
+        if (!dialog.open) {
+            // Reset all form states here
+            setPostUrl(null);
+            setCaption("");
+            setUseLocation(true);
+            setManualLatitude("");
+            setManualLongitude("");
+            setIsLoading(false);
+        }
+    }, [dialog.open]);
+
     return (
         <Dialog.RootProvider value={dialog} placement="center" size="md">
             <Portal>

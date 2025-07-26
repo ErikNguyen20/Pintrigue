@@ -1,6 +1,7 @@
 import { Flex, Avatar, Text } from "@chakra-ui/react";
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { FormatTimeAgo } from "../utils/FormatDate";
 import { useLikeCommentAPI, useUnlikeCommentAPI } from "../utils/api_methods";
@@ -9,8 +10,15 @@ const Comment = ({ comment }) => {
     const [likesCount, setLikesCount] = useState(comment?.likes_count || 0);
     const [liked, setLiked] = useState(comment?.is_liked || false);
 
+    useEffect(() => {
+        setLikesCount(comment?.likes_count || 0);
+        setLiked(comment?.is_liked || false);
+    }, [comment]);
+
     const { mutate: likeComment } = useLikeCommentAPI();
     const { mutate: unlikeComment } = useUnlikeCommentAPI();
+
+    const navigate = useNavigate();
 
     const handleLike = () => {
         if (liked) {
@@ -23,10 +31,17 @@ const Comment = ({ comment }) => {
         setLiked(!liked);
     };
 
+    const handleVisitProfile = (e) => {
+        e.stopPropagation();
+        if (!comment?.user?.username) return;
+
+        navigate(`/${comment.user.username}`);
+    }
+
     return (
         <Flex gap="4" w="full">
             {/* Avatar */}
-            <Avatar.Root>
+            <Avatar.Root onClick={handleVisitProfile} cursor="pointer">
                 <Avatar.Fallback />
                 <Avatar.Image src={comment?.user?.avatar_url} />
             </Avatar.Root>
@@ -35,7 +50,7 @@ const Comment = ({ comment }) => {
                 {/* Comment content */}
                 <Flex direction="column" flex="1">
                     <Text fontSize="xs">
-                        <Text as="span" fontWeight="semibold" fontSize="sm">
+                        <Text as="span" fontWeight="semibold" fontSize="sm" onClick={handleVisitProfile} cursor="pointer">
                             {comment?.user?.username}
                         </Text>{" "}
                         {comment?.content}

@@ -1,4 +1,4 @@
-import { Container } from "@chakra-ui/react";
+import { Container, Text } from "@chakra-ui/react";
 import FeedPost from "./FeedPost";
 import { useEffect } from "react";
 
@@ -29,6 +29,12 @@ const FeedPosts = () => {
       {allPosts.map((post) => (
         <FeedPost key={post.id} post={post} />
       ))}
+      {/* Render a message if no posts are available */}
+      {!isLoading && allPosts.length === 0 && (
+        <Text fontSize="sm" color="gray.400" textAlign="center">
+          No posts available.
+        </Text>
+      )}
 
       {/* Infinite Scroll Trigger */}
       {/* Intersection Observer target */}

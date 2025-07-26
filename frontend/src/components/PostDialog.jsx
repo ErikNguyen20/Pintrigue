@@ -9,7 +9,8 @@ import { BeautifyNumber } from "../utils/BeautifyNumber";
 import Comment from "./Comment";
 import { usePostCommentsAPI, useAddCommentAPI, useLikePostAPI, useUnlikePostAPI } from "../utils/api_methods";
 import PostHeader from "./PostHeader";
-
+import PostDialogDropdownMenu from "./PostDialogDropdownMenu";
+import { getUsernameFromToken } from "../utils/auth";
 
 
 
@@ -23,7 +24,7 @@ const PostDialog = ({ dialog, post }) => {
         setLikesCount(post?.likes_count || 0);
     }, [post]);
 
-
+    const ownsAccount = post?.user?.username === getUsernameFromToken();
     const { mutate: addComment } = useAddCommentAPI();
     const { mutate: likePost } = useLikePostAPI();
     const { mutate: unlikePost } = useUnlikePostAPI();
@@ -76,9 +77,7 @@ const PostDialog = ({ dialog, post }) => {
                             <Flex align="center" justify="space-between">
                                 <PostHeader username={post?.user?.username} avatarUrl={post?.user?.avatar_url} location={post?.location} created_at={post?.created_at} />
 
-                                <Box _hover={{ textDecoration: "underline" }} cursor="pointer" mr="6">
-                                    <IoEllipsisHorizontalSharp size={20} />
-                                </Box>
+                                {ownsAccount && (<PostDialogDropdownMenu dialog={dialog} post={post} />)}
                             </Flex>
 
                             {/* Caption */}

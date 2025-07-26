@@ -5,6 +5,7 @@ import { FaRegComment } from "react-icons/fa";
 
 import { useLikePostAPI, useUnlikePostAPI, useFollowUserAPI, useUnfollowUserAPI } from "../utils/api_methods";
 import { BeautifyNumber } from "../utils/BeautifyNumber";
+import { getUsernameFromToken } from "../utils/auth";
 import PostDialog from "./PostDialog";
 import PostHeader from "./PostHeader";
 
@@ -27,6 +28,7 @@ const FeedPost = ({ post }) => {
     const { mutate: unfollowUser } = useUnfollowUserAPI();
 
     const dialog = useDialog();
+    const ownsAccount = post?.user?.username === getUsernameFromToken();
 
     const handleFollow = (e) => {
         e.stopPropagation();
@@ -58,9 +60,9 @@ const FeedPost = ({ post }) => {
     <Flex justify="space-between" align="center" w="full" my="4">
         <PostHeader username={post?.user?.username} avatarUrl={post?.user?.avatar_url} location={post?.location} created_at={post?.created_at} />
 
-        <Button size="sm" fontWeight="medium" color="blue.500" _hover={{ color: "blue.600" }} cursor="pointer" onClick={handleFollow} bg="transparent">
+        {!ownsAccount && (<Button size="sm" fontWeight="medium" color="blue.500" _hover={{ color: "blue.600" }} cursor="pointer" onClick={handleFollow} bg="transparent">
             {followed ? "Unfollow" : "Follow"}
-        </Button>
+        </Button>)}
     </Flex>
 
     {/* Content */}

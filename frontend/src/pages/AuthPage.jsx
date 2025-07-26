@@ -12,7 +12,7 @@ const AuthPage = () => {
       <Container maxW={"container.md"} padding={0}>
         <Flex align={"center"} justify={"center"} gap={10}>
           <Box display={{ base: "none", md: "block" }}>
-            <Image rounded="md" src="https://bit.ly/dan-abramov" alt="Dan Abramov" />
+            <Image rounded="xs" src="/pintrigue_full.svg" alt="Logo" />
           </Box>
 
           <VStack spacing={4} align={"stretch"}>

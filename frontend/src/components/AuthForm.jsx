@@ -87,7 +87,7 @@ const AuthForm = () => {
     }
 
     const handleOAuthAuthentication = (provider) => {
-        
+        console.log(`Starting OAuth authentication with ${provider}`);
     }
 
     const handleForgotPassword = () => {

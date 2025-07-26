@@ -25,15 +25,14 @@ const createAvatarWithCircleIcon = ({ imageUrl, size = 40, backgroundColor = 'bl
       box-shadow: 0 0 4px rgba(0,0,0,0.3);
       border: 2px solid white;
     ">
-      <img 
+      ${imageUrl ? `<img 
         src="${imageUrl}" 
         style="
-          width: ${circleSize * 0.8}px;
-          height: ${circleSize * 0.8}px;
-          border-radius: 50%;
-          object-fit: cover;
-        " 
-      />
+            width: ${circleSize * 0.8}px;
+            height: ${circleSize * 0.8}px;
+            border-radius: 50%;
+            object-fit: cover;
+        " />` : ''}
     </div>
   `;
 
