@@ -1,9 +1,6 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/2a5ae426-55c4-4ec9-8fe8-2deacf911707" alt="Pintrigue Banner" width="100%" />
+  <img src="https://github.com/user-attachments/assets/d6026fd4-4311-48b7-9815-2fd80a89ed50" alt="Pintrigue Banner" width="100%" />
 </p>
-
-# 📌 **Pintrigue** 📌
-_A Web-Based Social Media Application_
 
 ---
 
